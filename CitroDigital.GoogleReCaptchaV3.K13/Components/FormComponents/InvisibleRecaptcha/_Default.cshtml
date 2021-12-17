@@ -1,0 +1,13 @@
+﻿@using CitroDigital.InvisibleRecaptcha.Rcl.Helpers
+@using Kentico.Forms.Web.Mvc
+@using Kentico.Web.Mvc
+
+@model CitroDigital.InvisibleRecaptcha.Rcl.Components.FormComponents.InvisibleRecaptcha.InvisibleRecaptchaComponent
+
+@{
+    var htmlAttributes = ViewData.Kentico().GetEditorHtmlAttributes();
+    Html.AddRecaptchaProperties(htmlAttributes);
+}
+
+
+@Html.TextBoxFor(_ => _.Value, htmlAttributes)

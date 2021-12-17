@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>$(MSBuildProjectName)</RootNamespace>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+		<IsMvcProject>true</IsMvcProject>
+		<Version>1.0.0</Version>
+		<Authors>Josh Kerbaugh</Authors>
+		<Company>Citro Digital</Company>
+		<Product></Product>
+		<Description></Description>
+		<RepositoryUrl></RepositoryUrl>
+		<PackageTags>Kentico, MVC, .net core</PackageTags>
+		<PackageReleaseNotes>Initial Build</PackageReleaseNotes>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Exclude="wwwroot\FormBuilder\**\*" Include="wwwroot\**\*"></EmbeddedResource>
+		<Content Update="**\*.cshtml" Pack="false" />
+	</ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<PackageReference Include="Kentico.Xperience.AspNetCore.WebApp" Version="[13.0.0,)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="package.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>
