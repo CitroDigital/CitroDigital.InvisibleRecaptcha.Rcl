@@ -5,17 +5,21 @@
 		<RootNamespace>$(MSBuildProjectName)</RootNamespace>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 		<IsMvcProject>true</IsMvcProject>
+
 		<Version>1.0.0</Version>
 		<Authors>Josh Kerbaugh</Authors>
 		<Company>Citro Digital</Company>
 		<Product></Product>
-		<Description></Description>
-		<RepositoryUrl></RepositoryUrl>
+		<Description>Adds google recaptcha v3 to the form builder</Description>
+		<RepositoryUrl>https://github.com/CitroDigital/CitroDigital.InvisibleRecaptcha.Rcl</RepositoryUrl>
 		<PackageTags>Kentico, MVC, .net core</PackageTags>
 		<PackageReleaseNotes>Initial Build</PackageReleaseNotes>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
 		<FileVersion>1.0.0.0</FileVersion>
+		<Langugage>C#</Langugage>
+		<IconUrl></IconUrl>
+		<Copyright>Copyright 2021 Citro Digital</Copyright>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 	</PropertyGroup>
