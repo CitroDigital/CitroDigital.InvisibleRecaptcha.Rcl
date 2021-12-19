@@ -1,4 +1,4 @@
-# Invisible Recaptcha Form Component
+# Invisible Recaptcha Form Component for Net 5.0
 Adds the [Google Invisible Recaptcha](https://developers.google.com/recaptcha/docs/v3) form component to your MVC Site.
 
 # Installation
@@ -44,7 +44,8 @@ InvisibleRecaptcha Attribute has two properties Action and Score.
   1. reCAPTCHA v3 returns a score (1.0 is very likely a good interaction, 0.0 is very likely a bot). Based on the score, you can take variable action in the context of your site. Every site is different, but below are some examples of how sites use the score. As in the examples below, take action behind the scenes instead of blocking traffic to better protect your site.
 
 ### Todo
-1. Add support for reCaptcha use outside of Kentico Forms
+1. Add support and validation for reCaptcha use outside of Kentico Forms - ie) newsletter forms, search queries, button clicks events.
+2. Add support for Net Framework
 
 # Issues/Support
 You can submit bugs through the issue list and we will get to them as soon as we can.
