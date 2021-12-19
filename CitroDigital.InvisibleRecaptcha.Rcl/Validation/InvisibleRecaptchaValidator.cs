@@ -5,62 +5,60 @@ using System.Net.Sockets;
 using System.Text;
 using System.Web;
 using CMS.Core;
-using CMS.EventLog;
-using CitroDigital.InvisibleRecaptcha.Rcl.Validation;
 using Newtonsoft.Json;
 
-public class InvisibleRecaptchaValidator
+namespace CitroDigital.InvisibleRecaptcha.Rcl.Validation
 {
-    private const string VERIFYURL = "https://www.google.com/recaptcha/api/siteverify";
-    private string mRemoteIp;
-
-    /// <summary>The shared key between the site and reCAPTCHA.</summary>
-    public string PrivateKey { get; set; }
-
-    /// <summary>The user's IP address.</summary>
-    public string RemoteIP
+    public class InvisibleRecaptchaValidator
     {
-        get
-        {
-            return mRemoteIp;
-        }
-        set
-        {
-            var ipAddress = IPAddress.Parse(value);
-            if (ipAddress == null || ipAddress.AddressFamily != AddressFamily.InterNetwork && ipAddress.AddressFamily != AddressFamily.InterNetworkV6)
-                throw new ArgumentException("Expecting an IP address, got " + (object)ipAddress);
-            mRemoteIp = ipAddress.ToString();
-        }
-    }
+        private const string VERIFYURL = "https://www.google.com/recaptcha/api/siteverify";
+        private string mRemoteIp;
 
-    /// <summary>
-    /// The user response token provided by reCAPTCHA, verifying the user on your site.
-    /// </summary>
-    public string Response { get; set; }
+        /// <summary>The shared key between the site and reCAPTCHA.</summary>
+        public string PrivateKey { get; set; }
 
-    /// <summary>Validate reCAPTCHA response</summary>
-    public InvisibleRecaptchaResponse Validate()
-    {
-        var httpWebRequest = (HttpWebRequest)WebRequest.Create(VERIFYURL);
-        httpWebRequest.ProtocolVersion = HttpVersion.Version10;
-        httpWebRequest.Timeout = 30000;
-        httpWebRequest.Method = "POST";
-        httpWebRequest.UserAgent = "reCAPTCHA/ASP.NET";
-        httpWebRequest.ContentType = "application/x-www-form-urlencoded";
-        var bytes = Encoding.ASCII.GetBytes("secret=" + HttpUtility.UrlEncode(PrivateKey) + "&remoteip=" + HttpUtility.UrlEncode(RemoteIP) + "&response=" + HttpUtility.UrlEncode(Response));
-        using (var requestStream = httpWebRequest.GetRequestStream())
-            requestStream.Write(bytes, 0, bytes.Length);
-        try
+        /// <summary>The user's IP address.</summary>
+        public string RemoteIP
         {
-            using var response = httpWebRequest.GetResponse();
-            using var streamReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-
-            return JsonConvert.DeserializeObject<InvisibleRecaptchaResponse>(streamReader.ReadToEnd());
+            get => mRemoteIp;
+            set
+            {
+                var ipAddress = IPAddress.Parse(value);
+                if (ipAddress == null || ipAddress.AddressFamily != AddressFamily.InterNetwork && ipAddress.AddressFamily != AddressFamily.InterNetworkV6)
+                    throw new ArgumentException("Expecting an IP address, got " + (object)ipAddress);
+                mRemoteIp = ipAddress.ToString();
+            }
         }
-        catch (WebException ex)
+
+        /// <summary>
+        /// The user response token provided by reCAPTCHA, verifying the user on your site.
+        /// </summary>
+        public string Response { get; set; }
+
+        /// <summary>Validate reCAPTCHA response</summary>
+        public InvisibleRecaptchaResponse Validate()
         {
-            Service.Resolve<IEventLogService>().LogException("ReCAPTCHA", "VALIDATE", ex);
-            return null;
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(VERIFYURL);
+            httpWebRequest.ProtocolVersion = HttpVersion.Version10;
+            httpWebRequest.Timeout = 30000;
+            httpWebRequest.Method = "POST";
+            httpWebRequest.UserAgent = "reCAPTCHA/ASP.NET";
+            httpWebRequest.ContentType = "application/x-www-form-urlencoded";
+            var bytes = Encoding.ASCII.GetBytes("secret=" + HttpUtility.UrlEncode(PrivateKey) + "&remoteip=" + HttpUtility.UrlEncode(RemoteIP) + "&response=" + HttpUtility.UrlEncode(Response));
+            using (var requestStream = httpWebRequest.GetRequestStream())
+                requestStream.Write(bytes, 0, bytes.Length);
+            try
+            {
+                using var response = httpWebRequest.GetResponse();
+                using var streamReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+
+                return JsonConvert.DeserializeObject<InvisibleRecaptchaResponse>(streamReader.ReadToEnd());
+            }
+            catch (WebException ex)
+            {
+                Service.Resolve<IEventLogService>().LogException("ReCAPTCHA", "VALIDATE", ex);
+                return null;
+            }
         }
     }
 }

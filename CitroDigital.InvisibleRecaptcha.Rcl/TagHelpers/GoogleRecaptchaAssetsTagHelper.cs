@@ -30,7 +30,7 @@ namespace CitroDigital.InvisibleRecaptcha.Rcl.TagHelpers
         }
 
         /// <summary>
-        /// Apply the recaptcha api to the end of the head tag
+        /// Apply recaptcha stylesheet code to the head tag
         /// </summary>
         /// <param name="output"></param>
         private void AppendGoogleRecaptchaHeadCode(TagHelperOutput output)

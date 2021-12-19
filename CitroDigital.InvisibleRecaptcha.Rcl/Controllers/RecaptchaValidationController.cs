@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CMS.Base;
 using CMS.Helpers;
 using CitroDigital.InvisibleRecaptcha.Rcl.Helpers;
+using CitroDigital.InvisibleRecaptcha.Rcl.Validation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CitroDigital.InvisibleRecaptcha.Rcl.Controllers

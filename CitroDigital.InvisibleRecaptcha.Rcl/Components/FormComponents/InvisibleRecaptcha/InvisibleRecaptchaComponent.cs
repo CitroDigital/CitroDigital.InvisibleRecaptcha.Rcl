@@ -6,6 +6,7 @@ using CMS.Core;
 using CMS.Helpers;
 using CitroDigital.InvisibleRecaptcha.Rcl.Components.FormComponents.InvisibleRecaptcha;
 using CitroDigital.InvisibleRecaptcha.Rcl.Helpers;
+using CitroDigital.InvisibleRecaptcha.Rcl.Validation;
 using Kentico.Forms.Web.Mvc;
 
 [assembly: RegisterFormComponent(

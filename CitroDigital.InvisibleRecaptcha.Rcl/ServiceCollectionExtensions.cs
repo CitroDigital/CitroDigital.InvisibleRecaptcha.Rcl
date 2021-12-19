@@ -1,4 +1,5 @@
-﻿using CMS;
+﻿using CitroDigital.InvisibleRecaptcha.Rcl.Configuration;
+using CMS;
 using CitroDigital.InvisibleRecaptcha.Rcl.TagHelpers;
 using Kentico.Forms.Web.Mvc;
 using Kentico.Forms.Web.Mvc.Widgets;
@@ -22,7 +23,6 @@ namespace CitroDigital.InvisibleRecaptcha.Rcl
 
             // Configure Form Fields
             FormWidgetRenderingConfiguration.GetConfiguration.Execute += InvisibleRecaptchaConfiguration.InjectFormMarkup;
-
             FormFieldRenderingConfiguration.GetConfiguration.Execute += InvisibleRecaptchaConfiguration.InjectComponentMarkup;
 
             return services;
